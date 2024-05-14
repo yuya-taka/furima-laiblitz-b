@@ -49,9 +49,8 @@ Things you may want to cover:
 | Column        | Type       | Options                        |
 | ------        | ------     | -----------                    |
 |name           | string     | null: false                    |
-|content        | string     | null: false                    |
-|price          | string     | null: false                    |
-|user           | string     | null: false                    |
+|content        | text       | null: false                    |
+|price          | integer     | null: false                    |
 |category       | integer    | null: false                    |
 |status         | integer    | null: false                    |
 |delivery_charge| integer    | null: false                    |
@@ -61,9 +60,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :comments
-- has_one :buyer
 - has_one :history
-- has_one :image
 - has_one_active_hash :category
 - has_one_active_hash :status
 - has_one_active_hash :delivery_charge
@@ -81,13 +78,11 @@ Things you may want to cover:
 |street_address| string     | null: false                    |
 |building      | string     |                                |
 |phone_number  | string     | null: false                    |
-|user          | references | null: false, foreign_key: true |
+|history       | references | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- has_one :history
-- has_one :prefecture
+- belongs_to :history
+- has_one_active_hash :prefecture
 
 
 ## comments テーブル
@@ -103,17 +98,6 @@ Things you may want to cover:
 - belongs_to :comment
 
 
-## images テーブル
-
-| Column  | Type       | Options                        |
-| ------- | --------   | ------------------------------ |
-|image    | string     | null: false                    |
-|items    | references | null: false, foreign_key: true |
-### Association
-
-- belongs_to :item
-
-
 ## histories テーブル
 
 | Column  | Type       | Options                        |
@@ -124,4 +108,4 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :item
-- belongs_to :buyer
+- has_one :buyer
