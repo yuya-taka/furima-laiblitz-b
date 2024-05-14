@@ -39,24 +39,24 @@ Things you may want to cover:
 |birthday             |date    |null: false              |
 ### Association
 
-- has_many :buyers
 - has_many :items
 - has_many :comments
+- has_many :histories
 
 
 ## items テーブル
 
-| Column        | Type       | Options                        |
-| ------        | ------     | -----------                    |
-|name           | string     | null: false                    |
-|content        | text       | null: false                    |
-|price          | integer     | null: false                    |
-|category       | integer    | null: false                    |
-|status         | integer    | null: false                    |
-|delivery_charge| integer    | null: false                    |
-|delivery_date  | integer    | null: false                    |
-|prefecture     | integer    | null: false                    |
-|user           | references | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ------           | ------     | -----------                    |
+|name              | string     | null: false                    |
+|content           | text       | null: false                    |
+|price             | integer     | null: false                    |
+|category_id       | integer    | null: false                    |
+|status_id         | integer    | null: false                    |
+|delivery_charge_id| integer    | null: false                    |
+|delivery_date_id  | integer    | null: false                    |
+|prefecture_id     | integer    | null: false                    |
+|user              | references | null: false, foreign_key: true |
 ### Association
 
 - has_many :comments
@@ -73,7 +73,7 @@ Things you may want to cover:
 | Column       | Type       | Options                        |
 | ------       | --------   | ---------------------------    |
 |post_code     | string     | null: false                    |
-|prefecture    | integer    | null: false                    |
+|prefecture_id | integer    | null: false                    |
 |city          | string     | null: false                    |
 |street_address| string     | null: false                    |
 |building      | string     |                                |
@@ -108,4 +108,5 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :item
+- belongs_to :user
 - has_one :buyer
