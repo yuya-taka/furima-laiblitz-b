@@ -37,10 +37,12 @@ Things you may want to cover:
 |first_name           |string  |null: false              |
 |family_name_kana     |string  |null: false              |
 |first_name_kana      |string  |null: false              |
-|birthday             |date    |null: false              |
+|birthday_year        |date    |null: false              |
+|birthday_month       |date    |null: false              |
+|birthday_date        |date    |null: false              |
 ### Association
 
-- has_one :buyer
+- has_many :buyer
 - has_many :items
 - has_many :comments
 
@@ -63,6 +65,7 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_many :comments
+- has_one :buyer
 
 ## buyers テーブル
 
@@ -78,6 +81,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
+- belongs_to :item
 
 
 ## comments テーブル
