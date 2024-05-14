@@ -48,21 +48,27 @@ Things you may want to cover:
 
 | Column        | Type       | Options                        |
 | ------        | ------     | -----------                    |
-|image          | string     | null: false                    |
 |name           | string     | null: false                    |
 |content        | string     | null: false                    |
+|price          | string     | null: false                    |
+|user           | string     | null: false                    |
 |category       | string     | null: false                    |
 |status         | string     | null: false                    |
 |delivery_charge| string     | null: false                    |
-|delivery_area  | string     | null: false                    |
-|delivery_date  | string     | null: false                    |
-|price          | integer    | null: false                    |
+|delivery_date  | integer    | null: false                    |
 |user           | references | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :user
 - has_many :comments
 - has_one :buyer
+- has_one :history
+- has_one :image
+- has_one_active_hash :category
+- has_one_active_hash :status
+- has_one_active_hash :delivery_charge
+- has_one_active_hash :delivery_date
+- has_one_active_hash :prefecture
+- belongs_to :user
 
 ## buyers テーブル
 
@@ -79,16 +85,42 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
+- has_one :history
+- has_one :prefecture
 
 
 ## comments テーブル
 
 | Column  | Type       | Options                        |
 | ------- | --------   | ------------------------------ |
-|text     | string     | null: false                    |
+|content  | string     | null: false                    |
 |user     | references | null: false, foreign_key: true |
-|items    | references | null: false, foreign_key: true |
+|item     | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :user
 - belongs_to :comment
+
+
+## images テーブル
+
+| Column  | Type       | Options                        |
+| ------- | --------   | ------------------------------ |
+|image    | string     | null: false                    |
+|items    | references | null: false, foreign_key: true |
+### Association
+
+- belongs_to :item
+
+
+## histories テーブル
+
+| Column  | Type       | Options                        |
+| ------- | --------   | ------------------------------ |
+|item     | references | null: false, foreign_key: true |
+|user     | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :buyer
