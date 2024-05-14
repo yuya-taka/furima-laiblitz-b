@@ -50,7 +50,7 @@ Things you may want to cover:
 | ------           | ------     | -----------                    |
 |name              | string     | null: false                    |
 |content           | text       | null: false                    |
-|price             | integer     | null: false                    |
+|price             | integer     | null: false                   |
 |category_id       | integer    | null: false                    |
 |status_id         | integer    | null: false                    |
 |delivery_charge_id| integer    | null: false                    |
