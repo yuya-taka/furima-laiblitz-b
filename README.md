@@ -61,11 +61,6 @@ Things you may want to cover:
 
 - has_many :comments
 - has_one :history
-- has_one_active_hash :category
-- has_one_active_hash :status
-- has_one_active_hash :delivery_charge
-- has_one_active_hash :delivery_date
-- has_one_active_hash :prefecture
 - belongs_to :user
 
 ## buyers テーブル
@@ -82,7 +77,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :history
-- has_one_active_hash :prefecture
+
 
 
 ## comments テーブル
