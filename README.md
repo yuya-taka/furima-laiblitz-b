@@ -52,10 +52,11 @@ Things you may want to cover:
 |content        | string     | null: false                    |
 |price          | string     | null: false                    |
 |user           | string     | null: false                    |
-|category       | string     | null: false                    |
-|status         | string     | null: false                    |
-|delivery_charge| string     | null: false                    |
+|category       | integer    | null: false                    |
+|status         | integer    | null: false                    |
+|delivery_charge| integer    | null: false                    |
 |delivery_date  | integer    | null: false                    |
+|prefecture     | integer    | null: false                    |
 |user           | references | null: false, foreign_key: true |
 ### Association
 
@@ -75,7 +76,7 @@ Things you may want to cover:
 | Column       | Type       | Options                        |
 | ------       | --------   | ---------------------------    |
 |post_code     | string     | null: false                    |
-|prefecture    | string     | null: false                    |
+|prefecture    | integer    | null: false                    |
 |city          | string     | null: false                    |
 |street_address| string     | null: false                    |
 |building      | string     |                                |
