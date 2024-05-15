@@ -1,17 +1,19 @@
 <%= render "shared/second-header"%>
 
-<%# エラー文 %>
-<% if @user.errors.any? %>
-  <% @user.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
-  <% end %>
-<% end %>
-<%# // エラー文 %>
+      <%# エラー文 %>
+      <% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      <% end %>
+      <%# // エラー文 %>
 
 <%# <%= form_with class: 'registration-main', local: true do |f| %> 
 <%= form_with model: @user, url: user_session_path, class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
+
   <div class='form-header'>
+
     <h1 class='form-header-text'>
       会員情報入力
     </h1>
