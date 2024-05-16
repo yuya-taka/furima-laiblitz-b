@@ -8,8 +8,16 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-  
+
+  def create
+    Item.create(item_params)
+    redirect_to '/'
+  end
+
   private
+  def item_params
+    params.require(:item).permit(:name, :content, :price, :category_id, :status_id, :delivery_charge_id, :delivery_date_id, :prefecture_id, :user)
+  end
 
   # サインインしていないとき、インデックスページしか見れない機能
   # def move_to_index
