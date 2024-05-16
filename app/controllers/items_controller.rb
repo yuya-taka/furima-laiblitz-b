@@ -5,6 +5,10 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   private
 
   # サインインしていないとき、インデックスページしか見れない機能
