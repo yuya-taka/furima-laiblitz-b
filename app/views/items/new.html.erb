@@ -21,7 +21,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :hoge, id:"item-image" %>
+        <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
     <%# /商品画像 %>
@@ -102,11 +102,11 @@
               var fee = price * feeRate;
               var profit = price - fee;
 
-              fee = Math.floor(add-tax-price);
+              fee = Math.floor(fee);
               profit = Math.floor(profit);
 
               // 計算結果を表示
-              document.getElementById('add-tax-price').textContent = add-tax-price
+              document.getElementById('add-tax-price').textContent = fee
               document.getElementById('profit').textContent = profit
             }
           </script> 
