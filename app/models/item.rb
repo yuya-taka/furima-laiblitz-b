@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :delivery_date
   
-  validates :title, :text, presence: true
+  
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :delivery_charge_id, numericality: { other_than: 1 , message: "can't be blank"}
@@ -24,5 +24,9 @@ class Item < ApplicationRecord
   validates :delivery_charge_id, presence: true
   validates :delivery_date_id, presence: true
   validates :prefecture_id, presence: true
+
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+
+  validates :price, format: { with: /\A[0-9]+\z/, message: "は半角数値のみ入力してください" }
 
 end
