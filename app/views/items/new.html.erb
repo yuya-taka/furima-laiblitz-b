@@ -1,16 +1,15 @@
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
+    <%= javascript_include_tag 'item' %>
     <script src="index.js"></script>
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, url: items_path, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
     <%= render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-
+   
     <%# 商品画像 %>
     <div class="img-upload">
       <div class="weight-bold-text">
@@ -95,21 +94,7 @@
       </div>
       <div>
         <div class="price-content">
-          <script>
-            function calculateFeeAndProfit() {
-              var price = parseFloat(document.getElementById('price').value);
-              var feeRate = 0.1; // 販売手数料率（例として10%とします）
-              var fee = price * feeRate;
-              var profit = price - fee;
 
-              fee = Math.floor(fee);
-              profit = Math.floor(profit);
-
-              // 計算結果を表示
-              document.getElementById('add-tax-price').textContent = fee
-              document.getElementById('profit').textContent = profit
-            }
-          </script> 
           <div class="price-text">
             <span>価格</span>
             <span class="indispensable">必須</span>
