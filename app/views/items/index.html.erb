@@ -144,7 +144,7 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= item.content %>
+            <%= item.name %>
           </h3>
           <div class='item-price'>
              <% delivery_charge = DeliveryCharge.find_by(id: item.delivery_charge_id) %>
