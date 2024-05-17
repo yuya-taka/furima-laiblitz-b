@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
 
   def item_params
-    params.require(:item).permit(:name, :content, :price, :category_id, :status_id, :delivery_charge_id, :delivery_date_id, :prefecture_id)
+    params.require(:item).permit(:name, :content, :price, :category_id, :status_id, :delivery_charge_id, :delivery_date_id, :prefecture_id).merge(user_id: current_user.id)
   end
 
   # サインインしていないとき、インデックスページしか見れない機能
