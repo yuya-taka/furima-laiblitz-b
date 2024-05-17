@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2024_05_17_065253) do
+
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,14 +57,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_17_065253) do
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
-    t.string "nickname", null: false
-    t.string "email", null: false
-    t.string "encrypted_password", null: false
-    t.string "family_name", null: false
-    t.string "first_name", null: false
-    t.string "family_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.date "birthday", null: false
+    t.string "nickname"
+    t.string "email"
+    t.string "encrypted_password"
+    t.string "family_name"
+    t.string "first_name"
+    t.string "family_name_kana"
+    t.string "first_name_kana"
+    t.date "birthday"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

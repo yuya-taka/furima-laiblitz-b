@@ -129,9 +129,11 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <% @item.each do |item|%>
+
+      <% @item.each do |item| %>
+
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to '#' do %>
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" if item.image.attached? %>
 
@@ -144,10 +146,11 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "商品名" %>
+            <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+             <% delivery_charge = DeliveryCharge.find_by(id: item.delivery_charge_id) %>
+             <span><%= item.price %>円<br><%= delivery_charge.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
