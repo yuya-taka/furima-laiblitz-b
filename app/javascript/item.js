@@ -1,12 +1,13 @@
 
-
-$(document).on('turbolinks:load', function() {
-  $('#item-price').on('change', function() {
-    var price = $(this).val();
-    var tax = price * 0.1; // 販売手数料は価格の10%
-    var profit = price - tax; // 販売利益は価格から販売手数料を差し引いたもの
-    
-    $('#add-tax-price').text(tax.toFixed(0)); // 販売手数料を表示する要素に価格を設定
-    $('#profit').text(profit.toFixed(0)); // 販売利益を表示する要素に価格を設定
-  });
+window.addEventListener('load', () => {
+  const priceInput = document.getElementById("item-price");
+ //  console.log(priceInput)
+   priceInput.addEventListener("input", () => {
+     const addTaxDom = document.getElementById("add-tax-price");
+     // console.log(priceInput.innerHTML);
+     addTaxDom.innerHTML = Math.round(priceInput.value * 0.1 );
+     const addPofitDom = document.getElementById("profit");
+     // console.log(priceInput.innerHTML);
+     addPofitDom.innerHTML = Math.round(priceInput.value - Math.round(priceInput.value * 0.1 ))
+ })
 });
