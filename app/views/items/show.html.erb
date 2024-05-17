@@ -26,13 +26,15 @@
     </div>
 
     <%# OKログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% unless @item.history.present? %>
-      <% if user_signed_in? && current_user.id == @item.user_id %>
-        <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
-      <% else %>
-        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%> 
+    <% if user_signed_in? %>
+      <% unless @item.history.present? %>
+        <% if user_signed_in? && current_user.id == @item.user_id %>
+          <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+        <% else %>
+          <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%> 
+        <% end %>
       <% end %>
     <% end %>
     <%# OK//ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
