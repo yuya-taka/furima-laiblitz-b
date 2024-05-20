@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index]
   before_action :authenticate_user!, only: :new
+  before_action :redirect_if_not_owner, only: [:edit, :update]
+
   def index
     @items = Item.order("created_at DESC")
   end
@@ -27,8 +29,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if item.update(item_params)
+    # item = Item.find(params[:id])
+    if @item.update(item_params)
       redirect_to item_path(item.id)
     else
       render :edit, status: :unprocessable_entity
@@ -44,8 +46,16 @@ class ItemsController < ApplicationController
 
   # サインインしていないとき、インデックスページしか見れない機能
   def move_to_index
-    unless user_signed_in?
+    unless user_signed_in? 
       redirect_to action: :index
+    end
+  end
+
+  # 別の出品者の商品は見れない機能
+  def redirect_if_not_owner
+    @item = Item.find(params[:id])
+    unless @item.user_id == current_user.id
+      redirect_to root_path, alert: "You are not authorized to edit this item."
     end
   end
 
