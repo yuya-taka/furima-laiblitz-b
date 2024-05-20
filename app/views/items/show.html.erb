@@ -21,23 +21,22 @@
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <%= "配送料負担" %>
+        <% delivery_charge = DeliveryCharge.find_by(id: @item.delivery_charge_id) %>
+        <%= delivery_charge.name %>
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-    <% if user_signed_in? && current_user.id == @item.user_id %>
-      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
-      <p class="or-text">or</p>
-      <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+    <% if user_signed_in? %>
+      <% unless @item.history.present? %>
+        <% if user_signed_in? && current_user.id == @item.user_id %>
+          <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+        <% else %>
+          <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%> 
+        <% end %>
+      <% end %>
     <% end %>
-
-      <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-      <%# //商品が売れていない場合はこちらを表示しましょう %>
-
-
-    <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
       <span><%= @item.content %></span>
@@ -60,7 +59,6 @@
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <% delivery_charge = DeliveryCharge.find_by(id: @item.delivery_charge_id) %>
           <td class="detail-value"><%= delivery_charge.name %></td>
         </tr>
         <tr>
