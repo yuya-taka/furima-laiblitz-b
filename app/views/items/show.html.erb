@@ -21,8 +21,7 @@
         ¥ <%= @item.price %>
       </span>
       <span class="item-postage">
-        <% delivery_charge = DeliveryCharge.find_by(id: @item.delivery_charge_id) %>
-        <%= delivery_charge.name %>
+        <%= @item.delivery_charge.name %>
       </span>
     </div>
 
@@ -45,31 +44,28 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= User.find(@item.user_id).nickname %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
+
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <% category = Category.find_by(id: @item.category_id) %>
-          <td class="detail-value"><%= category.name %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <% status = Status.find_by(id: @item.status_id) %>
-          <td class="detail-value"><%= status.name %></td>
+          <td class="detail-value"><%= @item.status.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= delivery_charge.name %></td>
+          <td class="detail-value"><%= @item.delivery_charge.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <% prefecture = Prefecture.find_by(id: @item.prefecture_id) %>
-          <td class="detail-value"><%= prefecture.name %></td>
+          <td class="detail-value"><%= @item.prefecture.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <% delivery_date= DeliveryDate.find_by(id: @item.delivery_date_id) %>
-          <td class="detail-value"><%= delivery_date.name %></td>
+          <td class="detail-value"><%= @item.delivery_date.name %></td>
         </tr>
       </tbody>
     </table>
@@ -108,7 +104,7 @@
       後ろの商品 ＞
     </a>
   </div>
-  <a href="#" class="another-item"><%= category.name %>をもっと見る</a>
+  <a href="#" class="another-item"><%= @item.category.name %>をもっと見る</a>
 </div>
 
 <%= render "shared/footer" %>
