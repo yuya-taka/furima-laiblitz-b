@@ -27,6 +27,7 @@ class Item < ApplicationRecord
   validates :delivery_charge_id, presence: true
   validates :delivery_date_id, presence: true
   validates :prefecture_id, presence: true
+  validates :image, presence: true
 
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
