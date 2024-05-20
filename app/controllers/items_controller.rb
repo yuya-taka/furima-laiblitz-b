@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index]
-  before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!, only: [:new, :destroy]
   def index
     @items = Item.all
     @items = Item.order("created_at DESC")
@@ -21,6 +21,17 @@ class ItemsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+
+    def destroy
+      @item = Item.find(params[:id])
+      if current_user.id == @item.user_id
+        @item.destroy
+        redirect_to root_path
+      else
+        #
+      end
+    end
+
   end
 
   private
