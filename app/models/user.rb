@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  #user-item-historyのアソシエーション
+  has_many :histories
+
   validates :nickname, presence: true
   #  validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "は有効なメールアドレスではありません" }
   validates :password, format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: "は半角英数字混合で入力してください" }
