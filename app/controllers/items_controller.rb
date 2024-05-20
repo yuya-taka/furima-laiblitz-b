@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  # before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index]
   before_action :authenticate_user!, only: :new
   def index
     @items = Item.order("created_at DESC")
@@ -29,7 +29,7 @@ class ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     if item.update(item_params)
-      redirect_to root_path
+      redirect_to item_path(item.id)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,9 +43,10 @@ class ItemsController < ApplicationController
   end
 
   # サインインしていないとき、インデックスページしか見れない機能
-  # def move_to_index
-  #   unless user_signed_in?
-  #     redirect_to action: :index
-  #   end
-  # end
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+
 end
