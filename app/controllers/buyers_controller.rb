@@ -7,6 +7,7 @@ class BuyersController < ApplicationController
   end
 
   def new
+    @buyer = Buyer.new
   end
 
   def create
