@@ -11,6 +11,7 @@ class BuyersController < ApplicationController
   end
 
   def create
+    binding.pry
     @buyer = Buyer.new(buyer_params)
     if @buyer.vaild?
       @buyerform.save(params,current_user.id)
@@ -25,6 +26,8 @@ class BuyersController < ApplicationController
 
   def buyer_params
     params.require(:buyer_form).permit(:post_code, :prefecture_id, :city, :street_address, :building_name, :phone_number).merge(item_id: params[:item_id], user_id: current_user.id)
+    params.require(:buyer).permit(:price).merge(token: params[:token])
   end
+
 end
 

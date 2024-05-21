@@ -98,10 +98,14 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.6.20240107)
     erubi (1.12.0)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    http-accept (1.7.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -131,6 +135,9 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
+    mime-types (3.5.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2024.0507)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.22.3)
@@ -145,6 +152,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
+    netrc (0.11.0)
     nio4r (2.7.3)
     nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
@@ -153,6 +161,8 @@ GEM
     parser (3.3.1.0)
       ast (~> 2.4.1)
       racc
+    payjp (0.0.15)
+      rest-client (~> 2.0)
     pg (1.5.6)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -206,6 +216,11 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.6)
     rubocop (1.63.5)
       json (~> 2.3)
@@ -280,6 +295,7 @@ DEPENDENCIES
   jbuilder
   mini_magick
   mysql2 (~> 0.5)
+  payjp
   pg
   pry-rails
   puma (~> 5.0)
