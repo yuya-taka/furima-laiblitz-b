@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index]
-  before_action :authenticate_user!, only: [:new, :update, :edit, :update]
-  before_action :redirect_if_not_owner, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:show, :edit]
+  before_action :redirect_if_not_owner, only: [:edit, :update]
+
 
   def index
     @items = Item.order("created_at DESC")
@@ -47,7 +48,6 @@ class ItemsController < ApplicationController
 
   # 別の出品者の商品は見れない機能
   def redirect_if_not_owner
-    @item = Item.find(params[:id])
     unless @item.user_id == current_user.id
       redirect_to root_path, alert: "You are not authorized to edit this item."
     end
