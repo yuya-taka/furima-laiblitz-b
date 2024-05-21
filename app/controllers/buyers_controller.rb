@@ -2,31 +2,39 @@ class BuyersController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @item = Item.find(params[:item_id])
+    #@item = Item.find(params[:item_id])
     @buyer = Buyer.new
   end
 
   def new
-    @buyer = Buyer.new
+    @buyer_history = BuyerHistory.new
   end
 
   def create
-    binding.pry
-    @buyer = Buyer.new(buyer_params)
-    if @buyer.vaild?
-      @buyerform.save(params,current_user.id)
+    @buyer_history = BuyerHistory.new(buyer_history)
+    if @buyer_history.vaild?
+      pay_item
+      @buyer_history.save(params,current_user.id)
       redirect_to root_path
     else
-      @item = Item.find(params[:item_id])
-      render :index
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
-  def buyer_params
-    params.require(:buyer_form).permit(:post_code, :prefecture_id, :city, :street_address, :building_name, :phone_number).merge(item_id: params[:item_id], user_id: current_user.id)
-    params.require(:buyer).permit(:price).merge(token: params[:token])
+  def buyer_history
+    params.require(:buyer_history).permit(:post_code, :prefecture_id, :city, :street_address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token:params[:token])
+  
+  end
+
+  def pay_item
+    Payjp.api_key = "sk_test_***********"  
+    Payjp::Charge.create(
+      amount: order_params[:price],  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
   end
 
 end
