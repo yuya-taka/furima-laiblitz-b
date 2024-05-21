@@ -86,7 +86,7 @@
           <label class="form-text">都道府県</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:prefecture_id, [], :hoge, :hoge, {}, {class:"select-box", id:"prefecture"}) %>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
