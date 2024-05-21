@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    #binding.pry
+    binding.pry
     History.create(history_params)
     #Buyer.create(buyer_params)
     redirect_to root_path
@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   private
 
   def history_params
-    params.merge(user: current_user.id, item: params[:item_id])
+    params.permit(:item_id).merge(user_id: current_user.id)
   end
 
   def buyer_params
