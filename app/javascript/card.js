@@ -1,5 +1,5 @@
 const pay = () => {
-  const payjp = Payjp('sk_test_2688513c0dda39e086c8ecfe')// PAY.JPテスト公開鍵
+  const payjp = Payjp('pk_test_6ffbee53f8d3d15a1ea616dc')// PAY.JPテスト公開鍵
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
@@ -10,7 +10,13 @@ const pay = () => {
   cvcElement.mount('#cvc-form');
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
-    console.log("フォーム送信時にイベント発火")
+    payjp.createToken(numberElement).then(function (response) {
+      if (response.error) {
+      } else {
+        const token = response.id;
+        console.log(token)
+      }
+    });
     e.preventDefault();
   });
 };
