@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   before_action :redirect_if_not_owner, only: [:edit, :update]
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.order('created_at DESC')
   end
-  
+
   def new
     @item = Item.new
   end
@@ -32,7 +32,6 @@ class ItemsController < ApplicationController
         redirect_to root_path
       end
     end
-
   end
 
   def edit
@@ -49,7 +48,8 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :content, :price, :category_id, :status_id, :delivery_charge_id, :delivery_date_id, :prefecture_id, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :content, :price, :category_id, :status_id, :delivery_charge_id, :delivery_date_id,
+                                 :prefecture_id, :image).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -58,9 +58,8 @@ class ItemsController < ApplicationController
 
   # 別の出品者の商品は見れない機能
   def redirect_if_not_owner
-    unless @item.user_id == current_user.id
-      redirect_to root_path, alert: "You are not authorized to edit this item."
-    end
-  end
+    return if @item.user_id == current_user.id
 
+    redirect_to root_path, alert: 'You are not authorized to edit this item.'
+  end
 end
