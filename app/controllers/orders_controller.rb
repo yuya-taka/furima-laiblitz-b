@@ -8,8 +8,9 @@ class OrdersController < ApplicationController
 
   def create
     binding.pry
-    History.create(history_params)
-    #Buyer.create(buyer_params)
+    @history = History.new(history_params)
+    @history.save
+    Buyer.create(buyer_params)
     redirect_to root_path
   end
 
@@ -20,7 +21,7 @@ class OrdersController < ApplicationController
   end
 
   def buyer_params
-    params.permit(:postal_code, :prefecture, :city, :house_number, :building_name).merge(donation_id: @donation.id)
+    params.permit(:post_code, :prefecture_id, :city,  :street_address, :building, :phone_number).merge(history_id: @history.id)
   end
 
 end
