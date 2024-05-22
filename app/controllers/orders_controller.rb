@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :redirect_if_sold_out, only: [:index, :create]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -39,6 +40,15 @@ class OrdersController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def redirect_if_sold_out
+    @item = Item.find(params[:item_id])
+    if @item.history.present? || @item.user_id == current_user.id
+      redirect_to root_path, alert: "この商品は購入されました"
+    end
+  end
+
+
 
   #def history_buyer_params
    # params.require(:history_buyer).permit(:price).merge(token: params[:token])
