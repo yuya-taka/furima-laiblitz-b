@@ -1,19 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :set_item
   before_action :redirect_if_sold_out, only: [:index, :create]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find_by(id: params[:item_id])
     @history_buyer = HistoryBuyer.new
     # @history_buyer = HistoryBuyer.new
     # binding.pry
   end
 
   def create
-    @item = Item.find_by(id: params[:item_id])
-    # @history = History.create(history_params)
-    # Buyer.create(buyer_params)
     @history_buyer = HistoryBuyer.new(history_params)
     if @history_buyer.valid?
       pay_item
@@ -43,8 +40,12 @@ class OrdersController < ApplicationController
     )
   end
 
-  def redirect_if_sold_out
+  def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def redirect_if_sold_out
+    
     return unless @item.history.present? || @item.user_id == current_user.id
 
     redirect_to root_path, alert: 'この商品は購入されました'
