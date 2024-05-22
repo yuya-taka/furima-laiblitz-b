@@ -1,8 +1,7 @@
 <%= include_gon %>
 <%= render "shared/second-header"%>
 
-<%# エラーメッセージの表示 %>
-<%= render 'shared/error_messages', model: @history_buyer %>
+
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -34,6 +33,9 @@
       </p>
     </div>
     <%# /支払額の表示 %>
+
+      <%# エラーメッセージの表示 %>
+  <%= render 'shared/error_messages', model: @history_buyer %>
 
     <%= form_with model: @history_buyer, url: item_orders_path(params[:item_id]), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
