@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def history_params
     # params.permit(:item_id).merge(user_id: current_user.id)
-    params.require(:history_buyer).permit(:post_code, :prefecture_id, :city,  :street_address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:history_buyer).permit(:post_code, :prefecture_id, :city,  :street_address, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   # def buyer_params

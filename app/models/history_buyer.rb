@@ -10,6 +10,8 @@ class HistoryBuyer
   end
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
 
+  attr_accessor :token
+
   def save
     # 購入履歴を保存する
     @history = History.create(item_id: item_id, user_id: user_id)
