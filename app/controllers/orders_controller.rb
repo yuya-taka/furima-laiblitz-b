@@ -7,7 +7,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @history = History.new(history_params)
     @history.save
     Buyer.create(buyer_params)
