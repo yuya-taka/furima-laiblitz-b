@@ -11,6 +11,7 @@ class HistoryBuyer
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
 
   attr_accessor :token
+  validates :token, presence: true
 
   def save
     # 購入履歴を保存する
