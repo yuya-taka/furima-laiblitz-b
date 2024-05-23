@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index]
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_item, only: [:show, :edit, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_if_not_owner, only: [:edit, :update]
   before_action :redirect_if_sold_out, only: [:edit, :update, :destroy]
 
@@ -65,9 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_sold_out
-    @item = Item.find(params[:id])
     return unless @item.history.present? 
-
     redirect_to root_path, alert: 'この商品は購入されました'
   end
 end
