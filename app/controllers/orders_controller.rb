@@ -51,11 +51,4 @@ class OrdersController < ApplicationController
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
-  # def history_buyer_params
-  # params.require(:history_buyer).permit(:price).merge(token: params[:token])
-  # end
-
-  # def buyer_params
-  #   params.permit(:post_code, :prefecture_id, :city,  :street_address, :building, :phone_number).merge(history_id: @history.id)
-  # end
 end

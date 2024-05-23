@@ -3,8 +3,8 @@ class HistoryBuyer
   attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :city,
                 :street_address, :building, :phone_number, :history_id,:token
 
-  validates :token, presence: true
   with_options presence: true do
+      validates :token
       validates :item_id
       validates :user_id
       validates :post_code
