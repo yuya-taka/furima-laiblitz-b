@@ -2,12 +2,10 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item
   before_action :redirect_if_sold_out, only: [:index, :create]
+  before_action :set_payjp_public_key, only: [:index, :create]
 
   def index
-    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @history_buyer = HistoryBuyer.new
-    # @history_buyer = HistoryBuyer.new
-    # binding.pry
   end
 
   def create
@@ -17,7 +15,6 @@ class OrdersController < ApplicationController
       @history_buyer.save
       redirect_to root_path
     else
-      gon.public_key = ENV['PAYJP_PUBLIC_KEY']
       render :index, status: :unprocessable_entity
     end
   end
@@ -25,7 +22,6 @@ class OrdersController < ApplicationController
   private
 
   def history_params
-    # params.permit(:item_id).merge(user_id: current_user.id)
     params.require(:history_buyer).permit(:post_code, :prefecture_id, :city, :street_address, :building, :phone_number).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
@@ -49,6 +45,10 @@ class OrdersController < ApplicationController
     return unless @item.history.present? || @item.user_id == current_user.id
 
     redirect_to root_path, alert: 'この商品は購入されました'
+  end
+
+  def set_payjp_public_key
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
   end
 
   # def history_buyer_params
