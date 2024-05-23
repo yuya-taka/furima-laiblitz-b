@@ -1,7 +1,7 @@
 class HistoryBuyer
   include ActiveModel::Model
   attr_accessor :item_id, :user_id, :post_code, :prefecture_id, :city,
-                :street_address, :building, :phone_number, :history_id,:token
+                :street_address, :building, :phone_number, :token
 
   with_options presence: true do
       validates :token
