@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     binding.pry
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     binding.pry
-    @user_profile = @user.build_address
+    @user_profile = @user.build_user_profile
     render :new_user_profile, status: :accepted
   end
 
