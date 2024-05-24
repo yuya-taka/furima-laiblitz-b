@@ -1,6 +1,6 @@
 <%= render "shared/second-header"%>
 
-<%= form_with model: @user_profile, url: user_registration_path, class: 'registration-main', local: true do |f| %>
+<%= form_with model: @user_profile, class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
     <%# 新エラー文 %>
     <%= render 'shared/error_messages', model: f.object %>

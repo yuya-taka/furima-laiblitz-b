@@ -15,11 +15,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
        render :new, status: :unprocessable_entity and return
      end
     session["devise.regist_data"] = {user: @user.attributes}
-    binding.pry
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
-    binding.pry
     @user_profile = @user.build_user_profile
     render :new_user_profile, status: :accepted
+  end
+
+  def create_user_profile
+    @user = User.new(session["devise.regist_data"]["user"])
+    @user_profile = UserProfile.new(user_profile_params)
+     unless @user_profile.valid?
+       render :new_user_profile, status: :unprocessable_entity and return
+     end
+    @user.build_user_profile(@user_profile.attributes)
+    binding.pry
+    @user.save
+    binding.pry
+    session["devise.regist_data"]["user"].clear
+    binding.pry
+    sign_in(:user, @user)
+    redirect_to root_path
+  end
+ 
+  private
+ 
+  def user_profile_params
+    params.require(:user_profile).permit( :family_name, :first_name, :family_name_kana,
+                                          :first_name_kana, :birthday)
   end
 
   # POST /resource
