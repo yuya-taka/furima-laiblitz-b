@@ -32,17 +32,6 @@
         <%= link_to "購入画面に進む", item_orders_path(@item.id) ,data: { turbo: false }, class:"item-red-btn"%> 
       <% end %>
     <% end %>
-
-    <%# フォロー機能 %>
-    <% if user_signed_in? %>
-      <% if current_user != @user %>
-        <% if @user.followed_by?(current_user) %>
-          <%=link_to "フォロー中(もう１度押すとフォロー解除)", user_relationships_path(@user.id),class: "btn", data: { turbo_method: :delete } %>
-        <% else %>
-          <%=link_to "フォローする", user_relationships_path(@user.id),class: "btn", data: { turbo_method: :post } %>
-        <% end %> 
-      <% end %>
-    <% end %>    
     
 
 
@@ -79,8 +68,13 @@
       </tbody>
     </table>
     <div class="option">
+      <%# フォロー機能 %>
+      <div class="follow" id="follow-btn<%= @item.id %>">
+        <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
+        <%= render 'relationships/relationship', item: @item %>
+      </div>   
       <div class="likes" id="like-btn<%= @item.id %>">
-        <%= image_tag "follow.png" ,class:"favorite-follow-icon" ,width:"20",height:"20"%>
+        <%= image_tag "good.png" ,class:"like-icon" ,width:"20",height:"20"%>
         <%= render 'likes/like', item: @item %>
       </div>  
       <div class="favorite-btn">
