@@ -105,6 +105,22 @@
   position: relative;
 }
 
+.likes {
+  border-radius: 40px;
+  width: 15vw;
+  min-width: 200px;
+  color: rgb(249, 75, 0);
+  border: 2px solid #40b6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.favorite-follow-icon{
+  margin-right: 5px;
+}
+
 .favorite-btn {
   border-radius: 40px;
   width: 15vw;
@@ -215,3 +231,4 @@
   margin: 20px 0px;
   padding: 2vh 5vw;
 }
+

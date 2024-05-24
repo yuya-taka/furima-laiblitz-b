@@ -79,6 +79,10 @@
       </tbody>
     </table>
     <div class="option">
+      <div class="likes" id="like-btn<%= @item.id %>">
+        <%= image_tag "follow.png" ,class:"favorite-follow-icon" ,width:"20",height:"20"%>
+        <%= render 'likes/like', item: @item %>
+      </div>  
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
         <span>お気に入り 0</span>
