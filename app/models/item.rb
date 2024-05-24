@@ -31,4 +31,8 @@ class Item < ApplicationRecord
   validates :price, numericality: { only_integer: true }
 
   has_many :likes
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 end
