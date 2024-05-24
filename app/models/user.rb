@@ -27,4 +27,6 @@ class User < ApplicationRecord
     follower =  passive_relationships.find_by(following_id: user.id)
     return follower.present?
   end
+
+  has_many :likes
 end
