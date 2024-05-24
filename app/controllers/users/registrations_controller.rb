@@ -26,12 +26,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
      unless @user_profile.valid?
        render :new_user_profile, status: :unprocessable_entity and return
      end
+    #@user_profile.user = @user
     @user.build_user_profile(@user_profile.attributes)
-    binding.pry
     @user.save
-    binding.pry
     session["devise.regist_data"]["user"].clear
-    binding.pry
     sign_in(:user, @user)
     redirect_to root_path
   end
