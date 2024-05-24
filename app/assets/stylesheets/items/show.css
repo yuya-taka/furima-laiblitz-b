@@ -205,3 +205,13 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.btn {
+  text-align: center;
+  background-color: #ea352d;
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 20px 0px;
+  padding: 2vh 5vw;
+}
