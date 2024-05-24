@@ -68,6 +68,12 @@
 
 .brand-list {
   text-decoration: none;
+  margin-right: 3vw;
+  color: #333333;
+}
+
+.my-page {
+  text-decoration: none;
   color: #333333;
 }
 
