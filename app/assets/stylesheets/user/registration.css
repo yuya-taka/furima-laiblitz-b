@@ -69,6 +69,7 @@
 
 .form-info-header {
   font-weight: bold;
+  margin-top: 50px;
 }
 
 .form-info-text {
@@ -157,4 +158,8 @@
   color: #0099e8;
   text-align: right;
   cursor: pointer;
+}
+
+.need-blank {
+  margin-bottom: 30px;
 }
