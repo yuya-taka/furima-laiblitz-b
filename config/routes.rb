@@ -8,9 +8,15 @@ Rails.application.routes.draw do
   end
 
   root "items#index"
+    
 
   resources :items do
     resources :orders
+    resource :likes, only: [:create, :destroy]
+    resources :comments, only: :create
+  end
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
   end
   
 end

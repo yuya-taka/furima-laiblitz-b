@@ -105,6 +105,41 @@
   position: relative;
 }
 
+
+
+.follow {
+  border-radius: 40px;
+  width: 15vw;
+  min-width: 200px;
+  color: rgb(249, 75, 0);
+  border: 2px solid #40ff80;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.follow-icon {
+  margin-right: 5px;
+}
+
+.likes {
+  border-radius: 40px;
+  width: 15vw;
+  min-width: 200px;
+  color: rgb(249, 75, 0);
+  border: 2px solid #4076ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.like-icon {
+  margin-right: 5px;
+}
+
+
 .favorite-btn {
   border-radius: 40px;
   width: 15vw;
@@ -205,3 +240,6 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+
+

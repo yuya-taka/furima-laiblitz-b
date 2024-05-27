@@ -1,4 +1,8 @@
 const pay = () => {
+  
+  const cardForm = document.querySelector('credit-card-form');
+  if (!cardForm) return null;
+
   const publicKey = gon.public_key
   const payjp = Payjp(publicKey) // PAY.JPテスト公開鍵
   const elements = payjp.elements();

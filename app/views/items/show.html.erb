@@ -32,6 +32,8 @@
         <%= link_to "購入画面に進む", item_orders_path(@item.id) ,data: { turbo: false }, class:"item-red-btn"%> 
       <% end %>
     <% end %>
+    
+
 
     <div class="item-explain-box">
       <span><%= @item.content %></span>
@@ -66,6 +68,16 @@
       </tbody>
     </table>
     <div class="option">
+      <%# フォロー機能 %>
+      <div class="follow" id="follow-btn<%= @item.id %>">
+        <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
+        <%= render 'relationships/relationship', item: @item %>
+      </div>
+      <%# いいね機能 %>   
+      <div class="likes" id="like-btn<%= @item.id %>">
+        <%= image_tag "good.png" ,class:"like-icon" ,width:"20",height:"20"%>
+        <%= render 'likes/like', item: @item %>
+      </div>  
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
         <span>お気に入り 0</span>
@@ -78,20 +90,29 @@
   </div>
   <%# /商品の概要 %>
 
+  <%# コメント投稿機能%>
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+    <div class="container">
+      <% if user_signed_in? %>
+        <%= form_with(model: [@item, @comment], local: true) do |form| %>
+          <%= form.text_area :content, placeholder: "コメントする", rows: "2", class: "comment-text"%>
+          <%= form.submit "SEND", class: "comment-btn"%>
+        <% end %>
+      <% else %>
+        <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+      <% end %>
+    </div>
+    <%#コメント表示%>
+    <div id="comments">
+      <h4>＜コメント一覧＞</h4>
+        <% @item.comments.each do |comment| %>
+          <div class="comment">
+            <p class="user-info"><%= comment.user.nickname %>: <%= comment.content%></p>
+          </div>
+        <% end %>
+    </div>    
   </div>
+  <%# /コメント投稿機能%>
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
