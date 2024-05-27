@@ -1,0 +1,12 @@
+#previews {
+  display: flex;
+}
+
+.preview {
+  margin-right: 30px;
+}
+
+.preview-image {
+  height: 200px;
+  width: 200px;
+}
