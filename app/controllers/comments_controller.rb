@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    binding.pry
+    
     @comment = Comment.new(comment_params)
-    binding.pry
+    
     if @comment.save
-      binding.pry
+      
       redirect_to item_path(params[:item_id])
     end
   end
