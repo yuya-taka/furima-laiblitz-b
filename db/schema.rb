@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_21_073029) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_24_032055) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_073029) do
     t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "street_address", null: false
-    t.string "building"
+    t.string "building", null: false
     t.string "phone_number", null: false
     t.bigint "history_id", null: false
     t.datetime "created_at", null: false
@@ -76,15 +76,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_073029) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "users", charset: "utf8", force: :cascade do |t|
-    t.string "nickname", null: false
-    t.string "email", null: false
-    t.string "encrypted_password", null: false
+  create_table "user_profiles", charset: "utf8", force: :cascade do |t|
     t.string "family_name", null: false
     t.string "first_name", null: false
     t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
     t.date "birthday", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
+  create_table "users", charset: "utf8", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.string "email", null: false
+    t.string "encrypted_password", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -100,4 +107,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_073029) do
   add_foreign_key "histories", "items"
   add_foreign_key "histories", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "user_profiles", "users"
 end

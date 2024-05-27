@@ -32,16 +32,29 @@ Things you may want to cover:
 |nickname             |string  |null: false              |
 |email                |string  |null: false, unique: true|
 |encrypted_password   |string  |null: false              |
-|family_name          |string  |null: false              |
-|first_name           |string  |null: false              |
-|family_name_kana     |string  |null: false              |
-|first_name_kana      |string  |null: false              |
-|birthday             |date    |null: false              |
 ### Association
 
 - has_many :items
 - has_many :comments
 - has_many :histories
+- has_one  :user_profiles <=new
+
+## user_profiles テーブル
+
+| Column              | Type       | Option                  |
+| ------------------  | -------    | ---------               |
+|family_name          | string     |null: false              |
+|first_name           | string     |null: false              |
+|family_name_kana     | string     |null: false              |
+|first_name_kana      | string     |null: false              |
+|birthday             | date       |null: false              |
+|user_id              | references |null: false              |<=new
+### Association
+
+- has_many   :items
+- has_many   :comments
+- has_many   :histories
+- belongs_to :user <=new
 
 
 ## items テーブル
@@ -50,7 +63,7 @@ Things you may want to cover:
 | ------           | ------     | -----------                    |
 |name              | string     | null: false                    |
 |content           | text       | null: false                    |
-|price             | integer     | null: false                   |
+|price             | integer    | null: false                   |
 |category_id       | integer    | null: false                    |
 |status_id         | integer    | null: false                    |
 |delivery_charge_id| integer    | null: false                    |
