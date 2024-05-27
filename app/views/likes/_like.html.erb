@@ -1,12 +1,10 @@
-<% if user_signed_in? %>
-  <% if current_user != @user %>
-    <% if item.liked_by?(current_user)%>
-      <%=link_to "いいね済", item_likes_path(@item.id),  data: { turbo_method: :delete }, class: "item_likes" , remote: true %>
-    <% else %>
-      <%=link_to "いいねする", item_likes_path(@item.id), data: { turbo_method: :post }, class: "item_likes" , remote: true %>
-    <% end %>
-  <% end %>
-<% end %>
+ <%= turbo_frame_tag dom_id(item, :like) do %>
+   <% if user_signed_in? && item.liked_by?(current_user)%>
+     <%=link_to "いいね済", item_likes_path(item.id), data: { turbo_method: :delete }, class: "item_likes" %>
+   <% else %>
+     <%=link_to "いいねする", item_likes_path(item.id), data: { turbo_method: :post }, class: "item_likes" %>
+   <% end %>
+ <% end %>
 
 
 
