@@ -73,10 +73,8 @@
         <div class="follow" id="follow-btn<%= @item.id %>">
           <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
           <%= render 'relationships/relationship', item: @item %>
-        </div>
-      <% end %>   
-      <%# いいね機能 %>
-      <% if user_signed_in? %>   
+        </div>  
+      <%# いいね機能 %> 
         <div class="likes" id="like-btn<%= @item.id %>">
           <%= image_tag "good.png" ,class:"like-icon" ,width:"20",height:"20"%>
           <%= render 'likes/like', item: @item %>
