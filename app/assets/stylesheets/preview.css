@@ -7,6 +7,16 @@
 }
 
 .preview-image {
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width:  100%;
+  object-fit: cover; 
+}
+
+.image-delete-button {
+  text-align: center;
+  border: solid 1px;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 15px;
 }

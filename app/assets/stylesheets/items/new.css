@@ -74,7 +74,6 @@
 
 /* 商品画像 */
 .img-upload {
-  display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 2vh 0;
