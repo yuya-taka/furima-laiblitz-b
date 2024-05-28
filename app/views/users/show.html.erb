@@ -1,8 +1,10 @@
 <%= render "shared/header" %>
-
-    <div class="contents row">
+  <div class="my-page-main">
+    <div class="my-page">
       <%#出品商品の表示%>
-      <p><%= @nickname %>さんの出品商品一覧</p>
+      <div class="my-items">
+        <%= @nickname %>さんの出品商品一覧
+      </div>
       <ul class='item-lists'>
         <% @items.each do |item| %>
         <li class='list'>
@@ -22,23 +24,43 @@
       </ul>
 
       <%#フォロワーフォロー中の表示%>
-      <h3>フォロワー</h3>
-      <% @user.followers.each do |user| %>
-        <p class=“f-user”><%= user.nickname %></p>
-      <% end %>
-      <h3>フォロー中</h3>
-      <% @user.followings.each do |user| %>
-        <p class=“f-user”><%= user.nickname %></p>
-      <% end %>    
-
-      <%#いいねした商品の表示%>
-      <h3>いいね済商品</h3>
-      <% @user.likes.each do |like| %>
-        <p class=“f-user”><%= like.item.user.nickname %></p>
-        <p class=“f-user”><%= like.item.name %></p>
-        <p class=“f-user”><%= like.item.content %></p>
-      <% end %>
+      <div class="follower-follow">
+        <div class="followers">
+          <div class="followers-title">
+            フォロワー
+          </div>
+          <div class="followers-name">
+            <% @user.followers.each do |user| %>
+              <p class=“f-user”><%= user.nickname %></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="follows">
+          <div class="follows-title">
+            フォロー中
+          </div>
+          <div class="follows-name">  
+            <% @user.followings.each do |user| %>
+              <p class=“f-user”><%= user.nickname %></p>
+            <% end %>
+          </div>  
+        </div>
+        <%#いいねした商品の表示%>
+        <div class="good-items">
+          <div class="good-items-title">
+            いいね済商品
+          </div>
+          <div class="good-items-name">
+            <% @user.likes.each do |like| %>
+              <p class=“f-user”><%= like.item.user.nickname %></p>
+              <p class=“f-user”><%= like.item.name %></p>
+              <p class=“f-user”><%= like.item.content %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
 
 

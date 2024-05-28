@@ -1,0 +1,53 @@
+.my-page-main{
+  background-color: gray;
+}
+
+.my-page{
+  background-color: white;
+  margin: 50px;
+}
+
+.my-items{
+  text-align: center;
+  font-size: 3.5vh;
+  font-weight: bold;
+}
+
+.follower-follow{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.followers-title{
+  font-weight: bold;
+  background-color: aquamarine;
+  border: 3px black;
+}
+
+.followes-name{
+  background-color: antiquewhite;
+  border: 1px black;
+}
+
+.follows-title{
+  font-weight: bold;
+  background-color: aquamarine;
+  border: 3px black;
+}
+
+.follows-name{
+  background-color: antiquewhite;
+  border: 1px black;
+}
+
+.good-items-title{
+  font-weight: bold;
+  background-color: aquamarine;
+  border: 3px black;
+}
+
+.good-items-name{
+  background-color: antiquewhite;
+  border: 1px black;
+}
