@@ -2,14 +2,24 @@
 
     <div class="contents row">
       <%#出品商品の表示%>
-      <p><%= @nickname %>さんの出品一覧</p>
-      <% @items.each do |item| %>
-        <div class="content_post" >
-          <%= image_tag item.image%>
-          <div class="name"><%= item.name %></div>
-          <p><%= item.content %></p>
-        </div>
-      <% end %>
+      <p><%= @nickname %>さんの出品商品一覧</p>
+      <ul class='item-lists'>
+        <% @items.each do |item| %>
+        <li class='list'>
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price %>円<br><%= item.delivery_charge.name %></span>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
 
       <%#フォロワーフォロー中の表示%>
       <h3>フォロワー</h3>
