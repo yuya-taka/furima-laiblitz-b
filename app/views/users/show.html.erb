@@ -1,6 +1,7 @@
 <%= render "shared/header" %>
 
     <div class="contents row">
+      <%#出品商品の表示%>
       <p><%= @nickname %>さんの出品一覧</p>
       <% @items.each do |item| %>
         <div class="content_post" >
@@ -9,7 +10,8 @@
           <p><%= item.content %></p>
         </div>
       <% end %>
-      
+
+      <%#フォロワーフォロー中の表示%>
       <h3>フォロワー</h3>
       <% @user.followers.each do |user| %>
         <p class=“f-user”><%= user.nickname %></p>
@@ -18,6 +20,14 @@
       <% @user.followings.each do |user| %>
         <p class=“f-user”><%= user.nickname %></p>
       <% end %>    
+
+      <%#いいねした商品の表示%>
+      <h3>いいね済商品</h3>
+      <% @user.likes.each do |like| %>
+        <p class=“f-user”><%= like.item.user.nickname %></p>
+        <p class=“f-user”><%= like.item.name %></p>
+        <p class=“f-user”><%= like.item.content %></p>
+      <% end %>
     </div>
 
 
