@@ -91,3 +91,5 @@ gem 'pry-rails'
 gem 'payjp'
 
 gem 'gon'
+
+gem 'ancestry'
