@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # 階層表示機能のため
-  # root 'new_categories#new'
   resources :new_categories, only:[:new]
+  # 子階層表示機能のため
+  get '/new_category/:id', to: 'new_categories#search'
 
   # ユーザー管理機能のため
   devise_for :users, controllers: {
