@@ -8,3 +8,5 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "item", to: "item.js"
 pin "card", to: "card.js"
 pin "preview", to: "preview.js"
+# 階層構造のため
+pin "new_category", to: "new_category.js"

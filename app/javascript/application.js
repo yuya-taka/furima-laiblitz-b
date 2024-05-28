@@ -4,3 +4,5 @@ import "controllers"
 import "item"
 import "card"
 import "preview"
+// 階層構造のため
+import "new_category"

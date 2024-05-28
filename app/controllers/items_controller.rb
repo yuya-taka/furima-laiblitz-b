@@ -12,6 +12,9 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    # 階層構造のカテゴリーのため
+    @new_categories = NewCategory.new
+    @mainnewcategories = NewCategory.all.order("id ASC").limit(13)
   end
 
   def show

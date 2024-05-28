@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_27_030331) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_28_023902) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_27_030331) do
     t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "street_address", null: false
-    t.string "building"
+    t.string "building", null: false
     t.string "phone_number", null: false
     t.bigint "history_id", null: false
     t.datetime "created_at", null: false
@@ -93,6 +93,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_27_030331) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_likes_on_item_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "new_categories", charset: "utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", charset: "utf8", force: :cascade do |t|
