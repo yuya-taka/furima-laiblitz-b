@@ -69,15 +69,19 @@
     </table>
     <div class="option">
       <%# フォロー機能 %>
-      <div class="follow" id="follow-btn<%= @item.id %>">
-        <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
-        <%= render 'relationships/relationship', item: @item %>
-      </div>
-      <%# いいね機能 %>   
-      <div class="likes" id="like-btn<%= @item.id %>">
-        <%= image_tag "good.png" ,class:"like-icon" ,width:"20",height:"20"%>
-        <%= render 'likes/like', item: @item %>
-      </div>  
+      <% if user_signed_in? %>  
+        <div class="follow" id="follow-btn<%= @item.id %>">
+          <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
+          <%= render 'relationships/relationship', item: @item %>
+        </div>
+      <% end %>   
+      <%# いいね機能 %>
+      <% if user_signed_in? %>   
+        <div class="likes" id="like-btn<%= @item.id %>">
+          <%= image_tag "good.png" ,class:"like-icon" ,width:"20",height:"20"%>
+          <%= render 'likes/like', item: @item %>
+        </div>
+      <% end %>  
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
         <span>お気に入り 0</span>
