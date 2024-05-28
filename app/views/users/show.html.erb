@@ -9,7 +9,17 @@
           <p><%= item.content %></p>
         </div>
       <% end %>
+      
+      <h3>フォロワー</h3>
+      <% @user.followers.each do |user| %>
+        <p class=“f-user”><%= user.nickname %></p>
+      <% end %>
+      <h3>フォロー中</h3>
+      <% @user.followings.each do |user| %>
+        <p class=“f-user”><%= user.nickname %></p>
+      <% end %>    
     </div>
+
 
 
 
