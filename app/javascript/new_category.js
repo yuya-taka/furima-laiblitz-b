@@ -6,7 +6,10 @@ window.addEventListener('turbo:load', function () {
   const selectWrap = document.getElementById('select-wrap')
 
   const selectChildElement = (selectForm) => {
-
+    // 再度違うジャンルのカテゴリーが選択できる記述
+    if (document.getElementById(selectForm) !== null) {
+      document.getElementById(selectForm).remove()
+    }
   }
 
   // 非同期通信でリクエストを送信
@@ -40,7 +43,7 @@ window.addEventListener('turbo:load', function () {
     }
   }
 
-  // 子カテゴリーの選択フォームのビューを表示
+  // 子カテゴリーのプルダウンを表示
   // (items)を引数としてappendChildSelectという関数を定義
   const appendChildSelect = (items) => {
     // createElementは、HTML要素を生成するメソッド
@@ -61,6 +64,39 @@ window.addEventListener('turbo:load', function () {
 
     childWrap.appendChild(childSelect)
     selectWrap.appendChild(childWrap)
+  }
+
+  // 孫カテゴリーの値を取得
+  const getGrandchildCategoryData = (grandchildCategory) => {
+    const grandchildValue = grandchildCategory.value
+    categoryXHR(grandchildValue)
+
+    XHR.onload = () => {
+      const GrandChildItems = XHR.response.item;
+      appendGrandChildSelect(GrandChildItems)
+    }
+  }
+
+  // 孫カテゴリーのプルダウンを表示
+  const appendGrandChildSelect = (items) => {
+    const childWrap = document.getElementById('child-select-wrap')
+    const grandchildWrap = document.createElement('div')
+    const grandchildSelect = document.createElement('select')
+
+    grandchildWrap.setAttribute('id', 'grand-child-select-wrap')
+    grandchildSelect.setAttribute('id', 'grand-child-select')
+    grandchildSelect.setAttribute('class', 'select-box')
+
+    items.forEach(item => {
+      const grandchildOption = document.createElement('option')
+      grandchildOption.innerHTML = item.name
+      grandchildOption.setAttribute('value', item.id)
+
+      grandchildSelect.appendChild(grandchildOption)
+    });
+
+    grandchildWrap.appendChild(grandchildSelect)
+    childWrap.appendChild(grandchildWrap)
   }
 
   parentCategory.addEventListener('change', function () {

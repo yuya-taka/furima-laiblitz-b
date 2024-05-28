@@ -52,7 +52,7 @@
           <span class="indispensable">必須</span>
         </div>
 
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <% f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <%# 新しいカテゴリー選択のプルダウンを出す %>
         <div id="select-wrap">
           <%= f.collection_select :ancestry, @mainnewcategories, :id, :name, { include_blank: "---" }, { class: "select-box", id: "parent-category" } %>
