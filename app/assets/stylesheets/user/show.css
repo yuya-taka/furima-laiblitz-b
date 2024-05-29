@@ -8,9 +8,15 @@
 }
 
 .my-items{
+  display: flex;
+  justify-content: center;
   text-align: center;
-  font-size: 3.5vh;
+  font-size: 4.5vh;
   font-weight: bold;
+}
+
+.imageicon {
+  margin: 0 15px;
 }
 
 .follower-follow{
