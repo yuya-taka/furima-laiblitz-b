@@ -1,0 +1,75 @@
+<%= render "shared/header" %>
+  <div class="my-page-main">
+    <div class="my-page">
+      <%#出品商品の表示%>
+      <div class="my-items">
+        <div class="imageicon">
+        <%= link_to image_tag('LaiBlitz_logo.png' , size: '185x50') %>    
+        </div>
+        <%= @nickname %>さんのマイページ
+        <div class="imageicon">
+        <%= link_to image_tag('images-removebg-preview.png' , size: '185x50') %>    
+        </div>    
+      </div>
+      <ul class='item-lists'>
+        <% @items.each do |item| %>
+        <li class='list'>
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name-mypage'>
+              <%= item.name %>
+            </h3>
+            <div class='item-price-mypage'>
+              <span><%= item.price %>円<br><%= item.delivery_charge.name %></span>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+
+      <%#フォロワーフォロー中の表示%>
+      <div class="follower-follow">
+        <div class="followers">
+          <div class="followers-title">
+            フォロワー
+          </div>
+          <div class="followers-name">
+            <% @user.followers.each do |user| %>
+              <p class=“f-user”><%= user.nickname %></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="follows">
+          <div class="follows-title">
+            フォロー中
+          </div>
+          <div class="follows-name">  
+            <% @user.followings.each do |user| %>
+              <p class=“f-user”><%= user.nickname %></p>
+            <% end %>
+          </div>  
+        </div>
+        <%#いいねした商品の表示%>
+        <div class="good-items">
+          <div class="good-items-title">
+            いいね済商品
+          </div>
+          <div class="good-items-name">
+            <% @user.likes.each do |like| %>
+              <p class=“f-user”><%= like.item.user.nickname %></p>
+              <p class=“f-user”><%= like.item.name %></p>
+              <p class=“f-user”><%= like.item.content %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+<%= render "shared/footer" %>

@@ -70,7 +70,7 @@
     <div class="option">
       <%# フォロー機能 %>
       <% if user_signed_in? %>  
-        <div class="follow" id="follow-btn<%= @item.id %>">
+        <div class="follow" id="follow-btn<%= @user.id %>">
           <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
           <%= render 'relationships/relationship', item: @item %>
         </div>  

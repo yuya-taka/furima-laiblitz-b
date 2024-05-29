@@ -286,8 +286,18 @@ a {
   font-size: 2.5vh;
 }
 
+.item-name-mypage {
+  font-size: 2.5vh;
+}
+
 .item-price {
   font-size: 1.5vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-price-mypage {
+  font-size: 2.5vh;
   display: flex;
   justify-content: space-between;
 }
