@@ -3,7 +3,13 @@
     <div class="my-page">
       <%#出品商品の表示%>
       <div class="my-items">
-        <%= @nickname %>さんの出品商品一覧
+        <div class="imageicon">
+        <%= link_to image_tag('LaiBlitz_logo.png' , size: '185x50') %>    
+        </div>
+        <%= @nickname %>さんのマイページ
+        <div class="imageicon">
+        <%= link_to image_tag('images-removebg-preview.png' , size: '185x50') %>    
+        </div>    
       </div>
       <ul class='item-lists'>
         <% @items.each do |item| %>
@@ -12,10 +18,10 @@
             <%= image_tag item.image, class: "item-img" %>
           </div>
           <div class='item-info'>
-            <h3 class='item-name'>
+            <h3 class='item-name-mypage'>
               <%= item.name %>
             </h3>
-            <div class='item-price'>
+            <div class='item-price-mypage'>
               <span><%= item.price %>円<br><%= item.delivery_charge.name %></span>
             </div>
           </div>
