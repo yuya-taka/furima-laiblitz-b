@@ -69,25 +69,25 @@
     </table>
     <div class="option">
       <%# フォロー機能 %>
-      <% if user_signed_in? %>  
+      <% if current_user.id != @item.user.id %>
         <div class="follow" id="follow-btn<%= @user.id %>">
           <%= image_tag "follow.png" ,class:"follow-icon" ,width:"20",height:"20"%>
           <%= render 'relationships/relationship', item: @item %>
         </div>  
-      <%# いいね機能 %> 
+        <%# いいね機能 %> 
         <div class="likes" id="like-btn<%= @item.id %>">
           <%= image_tag "good.png" ,class:"like-icon" ,width:"20",height:"20"%>
           <%= render 'likes/like', item: @item %>
         </div>
+        <div class="favorite-btn">
+          <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+          <span>お気に入り 0</span>
+        </div>
+        <div class="report-btn">
+          <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
+          <span>不適切な商品の通報</span>
+        </div>
       <% end %>  
-      <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
-      </div>
-      <div class="report-btn">
-        <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
-        <span>不適切な商品の通報</span>
-      </div>
     </div>
   </div>
   <%# /商品の概要 %>
